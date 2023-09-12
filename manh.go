@@ -119,7 +119,7 @@ func main() {
 	}
 
 	go func() {
-		fmt.Println("-- menjmoi: bat dau tan cong muc tieu! --\n           kill!\n\n")
+		fmt.Println("\n-- menjmoi: bat dau tan cong muc tieu! --\n           kill!\n\n")
 		ss := make(chan uint8, 8)
 		var (
 			err, sent int32
