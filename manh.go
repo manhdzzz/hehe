@@ -15,6 +15,7 @@ import (
 	"strings"
 	"sync/atomic"
 	"syscall"
+	"github.com/fatih/color"
 )
 
 const __version__  = "1.0.1"
@@ -119,7 +120,8 @@ func main() {
 	}
 
 	go func() {
-		fmt.Println("-- menjmoi: bat dau tan cong muc tieu! --\n           kill!\n\n")
+		red := color.New(color.FgRed)
+		red.Println("-- menjmoi: bat dau tan cong muc tieu! --\n           kill!\n\n")
 		ss := make(chan uint8, 8)
 		var (
 			err, sent int32
